@@ -15,5 +15,4 @@ ________________________________________________________________________________
 
 Diagrama de classes UML (primeira versão)
 
-![image](https://user-images.githubusercontent.com/77700346/223278824-4f8904ce-81a8-459d-850e-b4bd6806d62b.png)
-
+![image](https://user-images.githubusercontent.com/77700346/226074079-66ef8297-6790-4522-9ffe-98e762e5feb3.png)
