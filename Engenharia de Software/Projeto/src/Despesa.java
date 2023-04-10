@@ -1,13 +1,13 @@
-import java.util.Dictionary;
+import java.util.HashMap;
 
 public class Despesa {
     private int id;
     private String descricao;
     private Float valor_total;
     private Usuario dono_conta;
-    private Dictionary divisao;
+    private HashMap divisao;
 
-    public Despesa(int id, String descricao, Float valor_total, Usuario dono_conta, Dictionary divisao) {
+    public Despesa(int id, String descricao, Float valor_total, Usuario dono_conta, HashMap divisao) {
         this.id = id;
         this.descricao = descricao;
         this.valor_total = valor_total;
@@ -47,11 +47,11 @@ public class Despesa {
         this.dono_conta = dono_conta;
     }
 
-    public Dictionary getDivisao() {
+    public HashMap getDivisao() {
         return divisao;
     }
 
-    public void setDivisao(Dictionary divisao) {
+    public void setDivisao(HashMap divisao) {
         this.divisao = divisao;
     }
 }
