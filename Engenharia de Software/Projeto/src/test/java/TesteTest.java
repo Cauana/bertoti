@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 public class TesteTest {
     @Test
-    public void testeinicial() {
+    public void testeInicial() {
       
         Usuario usuario1 = new Usuario("João", "joao123", "senha123");
         Usuario usuario2 = new Usuario("Cauana", "cauana123", "cau123");
@@ -38,4 +38,5 @@ public class TesteTest {
         assertEquals("fullmad", grupo.getNome());
 
     }
+    
 }
