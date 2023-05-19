@@ -10,15 +10,14 @@ Os requisitos são descrições de características de um sistema, são descriç
 Existem dois tipos de requisitos, os funcionais e os não funcionais. O primeiro é referente a funcionalidade de um software, são necessidades ou problemas reais que devem ser atendidas pelo software, por exemplo: necessidade de consultar o status de um pedido. Já o segundo se refere a forma que as soluções serão efetuadas pelo sotware, ou seja, como serão arquitetadas as soluções, um exemplo é: a escolha do tipo de sistema operacional que será utilizado.
 
 Exemplo de trade-off em requisitos não funcionais: A análise de quais dispositivos em que o software poderá ser utilizado.
+_______________________________________________________________________________________________________________________________
+
+Casos de Uso
+
+![casos de uso](https://github.com/Cauana/bertoti/assets/77700346/45f29b06-0060-46e7-9b5b-46aada5a8992)
 
 ______________________________________________________________________________________________________________________________
 
 Diagrama de classes UML 
 
 ![WhatsApp Image 2023-05-18 at 21 18 20 (1)](https://github.com/Cauana/bertoti/assets/77700346/d96c805a-7fe0-452b-800c-ea6352175325)
-
-_______________________________________________________________________________________________________________________________
-
-Casos de Uso
-
-![casos de uso](https://github.com/Cauana/bertoti/assets/77700346/45f29b06-0060-46e7-9b5b-46aada5a8992)
