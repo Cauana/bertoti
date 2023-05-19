@@ -13,6 +13,11 @@ Exemplo de trade-off em requisitos não funcionais: A análise de quais disposit
 
 ______________________________________________________________________________________________________________________________
 
-Diagrama de classes UML (segunda versão)
+Diagrama de classes UML 
 
-![image](https://user-images.githubusercontent.com/77700346/226074079-66ef8297-6790-4522-9ffe-98e762e5feb3.png)
+![WhatsApp Image 2023-05-18 at 21 18 20 (1)](https://github.com/Cauana/bertoti/assets/77700346/d96c805a-7fe0-452b-800c-ea6352175325)
+
+_______________________________________________________________________________________________________________________________
+
+Casos de Uso
+
