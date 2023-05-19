@@ -21,3 +21,4 @@ ________________________________________________________________________________
 
 Casos de Uso
 
+![casos de uso](https://github.com/Cauana/bertoti/assets/77700346/45f29b06-0060-46e7-9b5b-46aada5a8992)
