@@ -20,4 +20,4 @@ ________________________________________________________________________________
 
 Diagrama de classes UML 
 
-![WhatsApp Image 2023-05-18 at 21 18 20 (1)](https://github.com/Cauana/bertoti/assets/77700346/d96c805a-7fe0-452b-800c-ea6352175325)
+![WhatsApp Image 2023-06-05 at 20 17 43](https://github.com/Cauana/bertoti/assets/77700346/28f012bc-a87d-4dc5-aa8f-228b694b89f9)
