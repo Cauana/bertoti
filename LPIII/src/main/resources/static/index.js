@@ -1,4 +1,4 @@
-const URL_API = "http://localhost:8081/coffees";
+const URL_API = "http://localhost:8081/coffees/";
 
 function listarCafes() {
     fetch(URL_API)
@@ -7,25 +7,37 @@ function listarCafes() {
             const coffeeList = document.getElementById("coffee-list");
             coffeeList.innerHTML = "";
             data.forEach(coffee => {
-                const listItem = document.createElement("li");
-                listItem.textContent = coffee.name;
-                const editButton = document.createElement('button');
-                const deleteButton = document.createElement('button');
-                editButton.innerHTML = "Editar";
-                deleteButton.innerHTML = "Excluir";
-                coffeeList.appendChild(listItem);
-                coffeeList.appendChild(editButton);
-                coffeeList.appendChild(deleteButton);
+                const row = document.createElement("tr");
+                
+                const idCell = document.createElement("td");
+                idCell.textContent = coffee.id;
+                
+                const nameCell = document.createElement("td");
+                nameCell.textContent = coffee.name;
 
-                editButton.addEventListener('click', () => editarCafe(coffee.id, listItem));
-                deleteButton.addEventListener('click', () => deletarCafe(coffee.id, listItem, editButton, deleteButton));
+                const editButton = document.createElement('button');
+                editButton.innerHTML = "Editar";
+                const deleteButton = document.createElement('button');
+                deleteButton.innerHTML = "Excluir";
+
+                const actionCell = document.createElement("td");
+                actionCell.appendChild(editButton);
+                actionCell.appendChild(deleteButton);
+
+                row.appendChild(idCell);
+                row.appendChild(nameCell);
+                row.appendChild(actionCell);
+
+                coffeeList.appendChild(row);
+
+                editButton.addEventListener('click', () => editarCafe(coffee.id, nameCell));
+                deleteButton.addEventListener('click', () => deletarCafe(coffee.id, row));
             });
         });
 }
 
 function adicionarCafe() {
     const nome = document.getElementById("nome").value;
-    const descricao = document.getElementById("descricao").value;
     const cafe = { name: nome };
 
     fetch(URL_API, {
@@ -43,34 +55,32 @@ function adicionarCafe() {
         .catch(error => console.log(error));
 }
 
-function editarCafe(id, listItem) {
-    const newName = prompt("Digite o novo nome para o café:", listItem.textContent);
+function editarCafe(id, nameCell) {
+    const newName = prompt("Digite o novo nome para o café:", nameCell.textContent);
     if (newName !== null) {
-        fetch(URL_API + "/" + id, {
+        fetch(URL_API + id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ name: newName }),
+            body: JSON.stringify({ name: newName}),
         })
             .then(response => response.json())
             .then(() => {
-                listItem.textContent = newName;
+                nameCell.textContent = newName;
             })
             .catch(error => console.log(error));
     }
 }
 
-function deletarCafe(id, listItem, editButton, deleteButton) {
+function deletarCafe(id, row) {
     const confirmDelete = confirm("Tem certeza de que deseja excluir este café?");
     if (confirmDelete) {
-        fetch(URL_API + "/" + id, {
+        fetch(URL_API + id, {
             method: 'DELETE',
         })
             .then(() => {
-                listItem.remove();
-                editButton.remove();
-                deleteButton.remove();
+                row.remove();
             })
             .catch(error => console.log(error));
     }

@@ -7,23 +7,40 @@ h1 {
     color: blue;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
 }
 
-li {
-    margin: 10px 0;
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
     padding: 10px;
-    background-color: #f0f0f0;
+    text-align: left;
+}
+
+th {
+    background-color: #008CBA;
+    color: white;
 }
 
 button {
     background-color: #008CBA;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 5px 10px;
     cursor: pointer;
+}
+
+button.edit {
+    background-color: #4CAF50;
+}
+
+button.delete {
+    background-color: #FF0000;
 }
 
 .modal {
