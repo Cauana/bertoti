@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafés</title>
+    <title>Biblioteca</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Lista de Cafés</h1>
+    <h1>Lista de Livros</h1>
 
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Nome</th>
+                <th>Título</th>
                 <th>Ações</th>
             </tr>
         </thead>
-        <tbody id="coffee-list">
+        <tbody id="book-list">
             <!-- Os dados da tabela serão preenchidos dinamicamente aqui -->
         </tbody>
     </table>
 
-    <button id="add-coffee-button" onclick="abrirModal()">Adicionar Café</button>
+    <button id="add-book-button" onclick="abrirModal()">Adicionar Livro</button>
 
-    <div id="modalAdicionarCafe" class="modal">
+    <div id="modalAdicionarLivro" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharModal()">&times;</span>
-            <h2>Adicionar Café</h2>
-            <input type="text" id="nome" placeholder="Nome do Café">
-            <button onclick="adicionarCafe()">Adicionar</button>
+            <h2>Adicionar Livro</h2>
+            <input type="text" id="titulo" placeholder="Título do Livro">
+            <button onclick="adicionarLivro()">Adicionar</button>
         </div>
     </div>
 

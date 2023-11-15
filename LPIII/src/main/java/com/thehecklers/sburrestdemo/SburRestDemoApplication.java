@@ -1,5 +1,4 @@
 package com.thehecklers.sburrestdemo;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
@@ -14,95 +13,95 @@ import java.util.UUID;
 @SpringBootApplication
 public class SburRestDemoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SburRestDemoApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(SburRestDemoApplication.class, args);
+    }
 }
-@CrossOrigin(origins = {"http://localhost:8081","http://127.0.0.1:5501"})
+
+@CrossOrigin(origins = {"http://localhost:8081", "http://127.0.0.1:5501"})
 @RestController
-@RequestMapping("/coffees")
+@RequestMapping("/books")
+class BookController {
+    private List<Book> books = new ArrayList<>();
 
+    public BookController() {
+        books.addAll(List.of(
+                new Book("Dom Casmurro"),
+                new Book("1984"),
+                new Book("To Kill a Mockingbird"),
+                new Book("The Great Gatsby")
+        ));
+    }
 
-class RestApiDemoController {
-	private List<Coffee> coffees = new ArrayList<>();
+    @GetMapping
+    Iterable<Book> getBooks() {
+        return books;
+    }
 
-	public RestApiDemoController() {
-		coffees.addAll(List.of(
-				new Coffee("Café Cereza"),
-				new Coffee("Café Ganador"),
-				new Coffee("Café Lareño"),
-				new Coffee("Café Três Pontas")
-		));
-	}
+    @GetMapping("/{id}")
+    Optional<Book> getBookById(@PathVariable String id) {
+        for (Book b : books) {
+            if (b.getId().equals(id)) {
+                return Optional.of(b);
+            }
+        }
 
-	@GetMapping
-	Iterable<Coffee> getCoffees() {
-		return coffees;
-	}
+        return Optional.empty();
+    }
 
-	@GetMapping("/{id}")
-	Optional<Coffee> getCoffeeById(@PathVariable String id) {
-		for (Coffee c: coffees) {
-			if (c.getId().equals(id)) {
-				return Optional.of(c);
-			}
-		}
-
-		return Optional.empty();
-	}
-
-	@PostMapping
-	Coffee postCoffee(@RequestBody Coffee coffee) {
-		coffees.add(coffee);
-		return coffee;
-	}
-
-	@PutMapping("/{id}")
-	ResponseEntity<Coffee> putCoffee(@PathVariable String id,
-									 @RequestBody Coffee coffee) {
-		int coffeeIndex = -1;
-
-		for (Coffee c: coffees) {
-			if (c.getId().equals(id)) {
-				coffeeIndex = coffees.indexOf(c);
-				coffees.set(coffeeIndex, coffee);
-			}
-		}
-
-		return (coffeeIndex == -1) ?
-				new ResponseEntity<>(postCoffee(coffee), HttpStatus.CREATED) :
-				new ResponseEntity<>(coffee, HttpStatus.OK);
-	}
-
-	@DeleteMapping("/{id}")
-	void deleteCoffee(@PathVariable String id) {
-		coffees.removeIf(c -> c.getId().equals(id));
-	}
+    @PostMapping
+public ResponseEntity<Book> postBook(@RequestBody Book book) {
+    books.add(book);
+    return new ResponseEntity<>(book, HttpStatus.CREATED);
 }
 
-class Coffee {
-	private final String id;
-	private String name;
 
-	public Coffee(String id, String name) {
-		this.id = id;
-		this.name = name;
-	}
+    @PutMapping("/{id}")
+ResponseEntity<Book> putBook(@PathVariable String id, @RequestBody Book updatedBook) {
+    Optional<Book> existingBook = getBookById(id);
 
-	public Coffee(String name) {
-		this(UUID.randomUUID().toString(), name);
-	}
+    if (existingBook.isPresent()) {
+        Book book = existingBook.get();
+        book.setTitle(updatedBook.getTitle());
 
-	public String getId() {
-		return id;
-	}
+        return new ResponseEntity<>(book, HttpStatus.OK);
+    } else {
+        // Se o livro não existir, retornamos um status 404 Not Found
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+}
 
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @DeleteMapping("/{id}")
+void deleteBook(@PathVariable String id) {
+    books.removeIf(b -> id.equals(b.getId())); // Verifica se o id não é nulo antes de chamar getId()
+}
+
+}
+
+class Book {
+    private final String id;
+    private String title;
+
+    public Book(String id, String title) {
+    this.id = id;
+    this.title = title;
+}
+
+public Book(String title) {
+    this(UUID.randomUUID().toString(), title);
+}
+
+
+    public String getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

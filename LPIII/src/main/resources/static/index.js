@@ -1,19 +1,19 @@
-const URL_API = "http://localhost:8081/coffees/";
+const URL_API = "http://localhost:8081/books/";
 
-function listarCafes() {
+function listarLivros() {
     fetch(URL_API)
         .then(response => response.json())
         .then(data => {
-            const coffeeList = document.getElementById("coffee-list");
-            coffeeList.innerHTML = "";
-            data.forEach(coffee => {
+            const bookList = document.getElementById("book-list");
+            bookList.innerHTML = "";
+            data.forEach(book => {
                 const row = document.createElement("tr");
                 
                 const idCell = document.createElement("td");
-                idCell.textContent = coffee.id;
+                idCell.textContent = book.id;
                 
-                const nameCell = document.createElement("td");
-                nameCell.textContent = coffee.name;
+                const titleCell = document.createElement("td");
+                titleCell.textContent = book.title;
 
                 const editButton = document.createElement('button');
                 editButton.innerHTML = "Editar";
@@ -25,56 +25,56 @@ function listarCafes() {
                 actionCell.appendChild(deleteButton);
 
                 row.appendChild(idCell);
-                row.appendChild(nameCell);
+                row.appendChild(titleCell);
                 row.appendChild(actionCell);
 
-                coffeeList.appendChild(row);
+                bookList.appendChild(row);
 
-                editButton.addEventListener('click', () => editarCafe(coffee.id, nameCell));
-                deleteButton.addEventListener('click', () => deletarCafe(coffee.id, row));
+                editButton.addEventListener('click', () => editarLivro(book.id, titleCell));
+                deleteButton.addEventListener('click', () => deletarLivro(book.id, row));
             });
         });
 }
 
-function adicionarCafe() {
-    const nome = document.getElementById("nome").value;
-    const cafe = { name: nome };
+function adicionarLivro() {
+    const titulo = document.getElementById("titulo").value;
+    const livro = { title: titulo };
 
     fetch(URL_API, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(cafe),
+        body: JSON.stringify(livro),
     })
         .then(response => response.json())
-        .then(() => {
-            listarCafes();
+        .then(data => {
+            listarLivros();
             fecharModal();
         })
         .catch(error => console.log(error));
 }
 
-function editarCafe(id, nameCell) {
-    const newName = prompt("Digite o novo nome para o café:", nameCell.textContent);
-    if (newName !== null) {
+function editarLivro(id, titleCell) {
+    const newTitle = prompt("Digite o novo título para o livro:", titleCell.textContent);
+    if (newTitle !== null) {
         fetch(URL_API + id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ name: newName}),
+            body: JSON.stringify({ title: newTitle }),
         })
             .then(response => response.json())
             .then(() => {
-                nameCell.textContent = newName;
+                titleCell.textContent = newTitle;
             })
             .catch(error => console.log(error));
     }
 }
 
-function deletarCafe(id, row) {
-    const confirmDelete = confirm("Tem certeza de que deseja excluir este café?");
+function deletarLivro(id, row) {
+    const confirmDelete = confirm("Tem certeza de que deseja excluir este livro?");
     if (confirmDelete) {
         fetch(URL_API + id, {
             method: 'DELETE',
@@ -87,15 +87,15 @@ function deletarCafe(id, row) {
 }
 
 function abrirModal() {
-    const modal = document.getElementById("modalAdicionarCafe");
+    const modal = document.getElementById("modalAdicionarLivro");
     modal.style.display = "block";
 }
 
 function fecharModal() {
-    const modal = document.getElementById("modalAdicionarCafe");
+    const modal = document.getElementById("modalAdicionarLivro");
     modal.style.display = "none";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    listarCafes();
+    listarLivros();
 });
