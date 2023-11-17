@@ -50,10 +50,19 @@ class BookController {
     }
 
     @PostMapping
-public ResponseEntity<Book> postBook(@RequestBody Book book) {
-    books.add(book);
-    return new ResponseEntity<>(book, HttpStatus.CREATED);
-}
+    public ResponseEntity<Book> postBook(@RequestBody Book book) {
+        // Gere um novo ID para o livro
+        String newId = UUID.randomUUID().toString();
+        
+        // Crie um novo livro com o ID gerado e o título do livro recebido
+        Book newBook = new Book(newId, book.getTitle());
+
+        // Adicione o novo livro à lista de livros
+        books.add(newBook);
+
+        return new ResponseEntity<>(newBook, HttpStatus.CREATED);
+    }
+
 
 
     @PutMapping("/{id}")
@@ -84,13 +93,14 @@ class Book {
     private String title;
 
     public Book(String id, String title) {
-    this.id = id;
-    this.title = title;
-}
+        this.id = id;
+        this.title = title;
+    }
 
-public Book(String title) {
-    this(UUID.randomUUID().toString(), title);
-}
+    public Book(String title) {
+        this(UUID.randomUUID().toString(), title);
+    }
+
 
 
     public String getId() {
