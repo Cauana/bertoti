@@ -66,7 +66,7 @@ class BookController {
 
 
     @PutMapping("/{id}")
-ResponseEntity<Book> putBook(@PathVariable String id, @RequestBody Book updatedBook) {
+    ResponseEntity<Book> putBook(@PathVariable String id, @RequestBody Book updatedBook) {
     Optional<Book> existingBook = getBookById(id);
 
     if (existingBook.isPresent()) {
@@ -82,8 +82,8 @@ ResponseEntity<Book> putBook(@PathVariable String id, @RequestBody Book updatedB
 
 
     @DeleteMapping("/{id}")
-void deleteBook(@PathVariable String id) {
-    books.removeIf(b -> id.equals(b.getId())); // Verifica se o id não é nulo antes de chamar getId()
+    void deleteBook(@PathVariable String id) {
+        books.removeIf(b -> id.equals(b.getId())); // Verifica se o id não é nulo antes de chamar getId()
 }
 
 }
