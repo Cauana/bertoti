@@ -2,13 +2,11 @@ public class Cliente {
     public Emprestimo emprestimo;
 
     public Emprestimo getEmprestimo() {
-        return emprestimo;
+        return this.emprestimo;
     }
 
     public void setEmprestimo(Emprestimo emprestimo) {
         this.emprestimo = emprestimo;
     }
-
-
     
 }
