@@ -17,9 +17,10 @@
 <p align="center">• <a href="https://www.git.com/Cauana">LinkedIn</a> • <a href="https://www.linkedin.com/in/cauanadias/">GitHub</a> •</p>
 
 
-<h4>Meus Principais Conhecimentos</h4>
+<details><summary><b>Meus Principais Conhecimentos</b></summary>
+<br>
 <p align="justify">Aprendizados sobre a linguagem de programação Java, pude desenvolver a lógica da aplicação, desenvolvi a capacidade de projetar e implementar APIs RESTful para expor operações CRUD, garantindo uma comunicação eficaz entre diferentes componentes do sistema e possibilitando a integração com outras aplicações. Obtive experiência prática com bancos de dados relacionais, como PostgreSQL, aprendendo a armazenar e recuperar dados de forma eficiente e segura.</p>
-<p align="justify">Aprimorei minhas habilidades em utilizar o Git para controle de versão do código-fonte e colaboração em equipe, garantindo um fluxo de trabalho suave e colaborativo durante todo o desenvolvimento do projeto. Além de conseguir adquirir conhecimentos básicos de tecnologias front-end, incluindo HTML, CSS e JavaScript, permitindo-me construir interfaces de usuário interativas e amigáveis para os usuários finais.</p>
+<p align="justify">Aprimorei minhas habilidades em utilizar o Git para controle de versão do código-fonte e colaboração em equipe, garantindo um fluxo de trabalho suave e colaborativo durante todo o desenvolvimento do projeto. Além de conseguir adquirir conhecimentos básicos de tecnologias front-end, incluindo HTML, CSS e JavaScript, permitindo-me construir interfaces de usuário interativas e amigáveis para os usuários finais.</p></details>
 
 
 <h4>Meus Projetos</h4>
@@ -33,7 +34,8 @@
 
 [GIT](https://github.com/oJavaLi/doisrponto?tab=readme-ov-file)
 
-<h4>Tecnologias Utilizadas</h4>
+<details><summary><b>Tecnologias Utilizadas</b></summary>
+<br>
 <ul>
     <li><strong>Figma:</strong> Plataforma de design de interface do usuário.</li>
     <li><strong>Java Spring:</strong> Framework de desenvolvimento Java com gama de recursos para desenvolver aplicativos robustos e escaláveis.</li>
@@ -41,10 +43,11 @@
     <li><strong>Slack:</strong> Plataforma de comunicação empresarial.</li>
     <li><strong>PostgreSQL:</strong> Sistema de gerenciamento de banco de dados relacional de código aberto para armazenar dados cadastrados.</li>
 </ul>
+</details>
 
 
-#### Contribuições Pessoais
-
+<details><summary><b>Contribuições Pessoais</summary></b>
+<br>
 <p align="justify">Desempenhei o papel de Product Owner, realizando o levantamente dos requisitos para construção do backlog do produto, garantindo uma compreensão do time sobre as necessidades do cliente e das regras de negócio. Fui responsável pela estruturação de classes, desenvolvi a aplicação cliente-servidor para apontamentos de sobreavisos e cadastro de usuários, além de realizar correções ao banco de dados. Sendo as atividades desempenhadas:</p>
 <ul>
   <li>Definição dos requisitos do projeto.</li>
@@ -54,27 +57,11 @@
   <li>Desenvolvimento do backend da aplicação.</li>
 </ul>
 <br>
+</details>
+<details><summary><b>Hard skills</b></summary>
+<br>
+Apresente as hard skills que você utilizou/desenvolveu durante o projeto e o nível de proficiência alcançado. Exemplo: CSS - Sei fazer com autonomia</details>
 
- <summary><b>Hard skills</b></summary>
-Apresente as hard skills que você utilizou/desenvolveu durante o projeto e o nível de proficiência alcançado. Exemplo: CSS - Sei fazer com autonomia
-
-<summary><b>Soft skills</b></summary>
-Apresente as soft skills que você utilizou/desenvolveu durante o projeto e em quais situações elas foram fundamentais. Exemplo: Comunicação - Precisei exercitar minhas habilidades de comunicação para viabilizar as reuniões semanais levando em conta as disponibilidades dos membros, que não cursavam as mesmas disciplinas.
-
-### Em 2022-1
-Mesmo formato
-
-### Em 2022-2
-Mesmo formato
-
-### Em 2023-1
-Mesmo formato
-
-### Em 2023-2
-Mesmo formato
-
-
-
-
-
-
+<details><summary><b>Soft skills</b></summary>
+<br>
+Apresente as soft skills que você utilizou/desenvolveu durante o projeto e em quais situações elas foram fundamentais. Exemplo: Comunicação - Precisei exercitar minhas habilidades de comunicação para viabilizar as reuniões semanais levando em conta as disponibilidades dos membros, que não cursavam as mesmas disciplinas.</details>
