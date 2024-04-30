@@ -58,10 +58,72 @@
 </ul>
 <br>
 </details>
-<details><summary><b>Hard skills</b></summary>
-<br>
-Apresente as hard skills que você utilizou/desenvolveu durante o projeto e o nível de proficiência alcançado. Exemplo: CSS - Sei fazer com autonomia</details>
+<details>
+  <summary><b>Hard skills</b></summary>
+  <br>
+  <table align="center">
+    <tr>
+      <td align="center"><b>Java:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Java Spring Framework:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Banco de Dados Relacionais:</b></td>
+      <td>🌟🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Git:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>RESTful APIs:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>HTML/CSS/JavaScript:</b></td>
+      <td>🌟🌟🌟</td>
+    </tr>
+  </table>
+</details>
+
 
 <details><summary><b>Soft skills</b></summary>
 <br>
-Apresente as soft skills que você utilizou/desenvolveu durante o projeto e em quais situações elas foram fundamentais. Exemplo: Comunicação - Precisei exercitar minhas habilidades de comunicação para viabilizar as reuniões semanais levando em conta as disponibilidades dos membros, que não cursavam as mesmas disciplinas.</details>
+  <table align="center">
+    <tr>
+      <td align="center"><b>Comunicação Efetiva:</b></td>
+      <td align="center">🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Trabalho em Equipe:</b></td>
+      <td align="center">🌟🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Resolução de Problemas:</b></td>
+      <td align="center">🌟🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Adaptabilidade:</b></td>
+      <td align="center">🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Atenção aos Detalhes:</b></td>
+      <td align="center">🌟🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Gestão do Tempo:</b></td>
+      <td align="center">🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Aprendizado Contínuo:</b></td>
+      <td align="center">🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Resiliência:</b></td>
+      <td align="center">🌟🌟🌟</td>
+    </tr>
+  </table>
+</details>
