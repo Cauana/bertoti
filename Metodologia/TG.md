@@ -18,7 +18,8 @@
 
 
 <h4>Meus Principais Conhecimentos</h4>
-Apresente seus principais conhecimentos. Foque nos conhecimentos que possui maior domínio e que deseja desenvolver durante sua carreira.
+<p align="justify">Aprendizados sobre a linguagem de programação Java, pude desenvolver a lógica da aplicação, desenvolvi a capacidade de projetar e implementar APIs RESTful para expor operações CRUD, garantindo uma comunicação eficaz entre diferentes componentes do sistema e possibilitando a integração com outras aplicações. Obtive experiência prática com bancos de dados relacionais, como PostgreSQL, aprendendo a armazenar e recuperar dados de forma eficiente e segura.</p>
+<p align="justify">Aprimorei minhas habilidades em utilizar o Git para controle de versão do código-fonte e colaboração em equipe, garantindo um fluxo de trabalho suave e colaborativo durante todo o desenvolvimento do projeto. Além de conseguir adquirir conhecimentos básicos de tecnologias front-end, incluindo HTML, CSS e JavaScript, permitindo-me construir interfaces de usuário interativas e amigáveis para os usuários finais.</p>
 
 
 <h4>Meus Projetos</h4>
