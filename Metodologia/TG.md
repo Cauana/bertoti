@@ -28,10 +28,25 @@
 <h4>Em 2023-2</h4> 
 <p align="justify">O produto 2Rponto é um sistema que realiza o controle de horas excedentes de colaboradores da empresa 2RP Net. A empresa parceira é conhecida por disponibilizar soluções para análise de informações em tempo real para tomada de decisões de negócios que precisam atender requisitos de tempo extremamente rigorosos. As soluções inovadoras e customizadas a diferenciam no mercado, assim como os serviços, permitem o crescimento de negócio e de seus resultados.</p>
 
-<p align="center"><img src="https://github.com/Cauana/bertoti/assets/77700346/a0586ac7-3171-4f68-a7a1-581beadc81ab" width="70%"></p>
+<p align="center"><img src="https://github.com/Cauana/bertoti/assets/77700346/2c90ccaa-860e-44a9-afa8-b276b372905e" width="70%"></p>
 
 <p align="justify">Anteriormente, a empresa enfrentava desafios na gestão de horas, dependendo de várias planilhas, o que limitava a disponibilidade, flexibilidade e controle necessários. Em resposta, desenvolvemos uma aplicação que centraliza o controle de horas excedentes, distinguindo entre horas extras e sobreavisos. Essa aplicação também oferece recursos de aprovação ou reprovação das horas pelo gestor da equipe e pelo departamento de Recursos Humanos. Além disso, inclui painéis de controle para os colaboradores visualizarem suas horas aprovadas ou reprovadas, enquanto gestores e RH podem monitorar as pendências de aprovação de seus respectivos usuários. </p>
 
+<details><summary><b> Login </summary></b>
+    
+<p align="center"><img src="https://github.com/Cauana/bertoti/assets/77700346/ce4cd499-7195-481d-8f17-95015e633331" width="70%"></p>
+
+</details>
+
+<details><summary><b> Cadastro de Usuários </summary>
+
+<p align="center"><img src="https://github.com/Cauana/bertoti/assets/77700346/6bbd68dc-0708-435a-b08e-c6490254261c" width="70%"></p>
+
+<p align="center"><img src="https://github.com/Cauana/bertoti/assets/77700346/ecdae0de-eed9-4894-8374-02b376ffdaf2" width="70%"></p>
+
+</details>
+
+    
 [GIT](https://github.com/oJavaLi/doisrponto?tab=readme-ov-file)
 
 <details><summary><b>Tecnologias Utilizadas</b></summary>
@@ -71,7 +86,7 @@
       <td>🌟🌟🌟🌟</td>
     </tr>
     <tr>
-      <td align="center"><b>Banco de Dados Relacionais:</b></td>
+      <td align="center"><b>Banco de Dados Relacionais, PostgreSQL:</b></td>
       <td>🌟🌟🌟🌟🌟</td>
     </tr>
     <tr>
@@ -85,6 +100,10 @@
     <tr>
       <td align="center"><b>HTML/CSS/JavaScript:</b></td>
       <td>🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Diagrama DER:</b></td>
+      <td>🌟🌟🌟🌟🌟</td>
     </tr>
   </table>
 </details>
