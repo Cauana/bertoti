@@ -31,25 +31,10 @@
 <p align="center"><img src="https://github.com/Cauana/bertoti/assets/77700346/2c90ccaa-860e-44a9-afa8-b276b372905e" width="70%"></p>
 
 <p align="justify">Anteriormente, a empresa enfrentava desafios na gestão de horas, dependendo de várias planilhas, o que limitava a disponibilidade, flexibilidade e controle necessários. Em resposta, desenvolvemos uma aplicação que centraliza o controle de horas excedentes, distinguindo entre horas extras e sobreavisos. Essa aplicação também oferece recursos de aprovação ou reprovação das horas pelo gestor da equipe e pelo departamento de Recursos Humanos. Além disso, inclui painéis de controle para os colaboradores visualizarem suas horas aprovadas ou reprovadas, enquanto gestores e RH podem monitorar as pendências de aprovação de seus respectivos usuários. </p>
-
-<details><summary><b> Login </summary></b>
-    
-<p align="center"><img src="https://github.com/Cauana/bertoti/assets/77700346/ce4cd499-7195-481d-8f17-95015e633331" width="70%"></p>
-
-</details>
-
-<details><summary><b> Cadastro de Usuários </summary>
-
-<p align="center"><img src="https://github.com/Cauana/bertoti/assets/77700346/6bbd68dc-0708-435a-b08e-c6490254261c" width="70%"></p>
-
-<p align="center"><img src="https://github.com/Cauana/bertoti/assets/77700346/ecdae0de-eed9-4894-8374-02b376ffdaf2" width="70%"></p>
-
-</details>
-
     
 [GIT](https://github.com/oJavaLi/doisrponto?tab=readme-ov-file)
 
-<details><summary><b>Tecnologias Utilizadas</b></summary>
+<summary><b>Tecnologias Utilizadas</b></summary>
 <br>
 <ul>
     <li><strong>Figma:</strong> Plataforma de design de interface do usuário.</li>
@@ -58,21 +43,17 @@
     <li><strong>Slack:</strong> Plataforma de comunicação empresarial.</li>
     <li><strong>PostgreSQL:</strong> Sistema de gerenciamento de banco de dados relacional de código aberto para armazenar dados cadastrados.</li>
 </ul>
-</details>
 
-
-<details><summary><b>Contribuições Pessoais</summary></b>
+<b>Contribuições Pessoais</summary></b>
 <br>
 <p align="justify">Desempenhei o papel de Product Owner, realizando o levantamente dos requisitos para construção do backlog do produto, garantindo uma compreensão do time sobre as necessidades do cliente e das regras de negócio. Fui responsável pela estruturação de classes, desenvolvi a aplicação cliente-servidor para apontamentos de sobreavisos e cadastro de usuários, além de realizar correções ao banco de dados. Sendo as atividades desempenhadas:</p>
-<ul>
-  <li>Definição dos requisitos do projeto.</li>
-  <li>Design da arquitetura da aplicaçãoo.</li>
-  <li>Implementação de APIs REST para apontamentos e cadastro de usuários.</li>
-  <li>Gerenciamento e otimização do banco de dados.</li>
-  <li>Desenvolvimento do backend da aplicação.</li>
-</ul>
+  
+ <details><Summary>Definição dos requisitos do projeto.</Summary></details>
+  <details><Summary>Design da arquitetura da aplicação.</Summary></details>
+  <details><Summary>Implementação de APIs REST para apontamentos e cadastro de usuários.</Summary></details>
+  <details><Summary>Gerenciamento e otimização do banco de dados.</Summary></details>
+  <details><Summary>Desenvolvimento do backend da aplicação.</Summary></details>
 <br>
-</details>
 <details>
   <summary><b>Hard skills</b></summary>
   <br>
