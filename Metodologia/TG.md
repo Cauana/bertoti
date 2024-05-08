@@ -357,35 +357,35 @@ formulario.addEventListener('submit', function (event) {
   <table align="center">
     <tr>
       <td align="center"><b>Comunicação Efetiva:</b></td>
-      <td align="center">🌟🌟🌟🌟</td>
+      <td>🌟🌟🌟🌟</td>
     </tr>
     <tr>
       <td align="center"><b>Trabalho em Equipe:</b></td>
-      <td align="center">🌟🌟🌟🌟🌟</td>
+      <td>🌟🌟🌟🌟🌟</td>
     </tr>
     <tr>
       <td align="center"><b>Resolução de Problemas:</b></td>
-      <td align="center">🌟🌟🌟🌟🌟</td>
+      <td>🌟🌟🌟🌟🌟</td>
     </tr>
     <tr>
       <td align="center"><b>Adaptabilidade:</b></td>
-      <td align="center">🌟🌟🌟</td>
+      <td>🌟🌟🌟</td>
     </tr>
     <tr>
       <td align="center"><b>Atenção aos Detalhes:</b></td>
-      <td align="center">🌟🌟🌟🌟🌟</td>
+      <td>🌟🌟🌟🌟🌟</td>
     </tr>
     <tr>
       <td align="center"><b>Gestão do Tempo:</b></td>
-      <td align="center">🌟🌟🌟🌟</td>
+      <td>🌟🌟🌟🌟</td>
     </tr>
     <tr>
       <td align="center"><b>Aprendizado Contínuo:</b></td>
-      <td align="center">🌟🌟🌟🌟</td>
+      <td>🌟🌟🌟🌟</td>
     </tr>
     <tr>
       <td align="center"><b>Resiliência:</b></td>
-      <td align="center">🌟🌟🌟</td>
+      <td>🌟🌟🌟</td>
     </tr>
   </table>
 
