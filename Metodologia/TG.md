@@ -48,7 +48,260 @@
 <br>
 <p align="justify">Desempenhei o papel de Product Owner, realizando o levantamente dos requisitos para construção do backlog do produto, garantindo uma compreensão do time sobre as necessidades do cliente e das regras de negócio. Fui responsável pela estruturação de classes, desenvolvi a aplicação cliente-servidor para apontamentos de sobreavisos e cadastro de usuários, além de realizar correções ao banco de dados. Sendo as atividades desempenhadas:</p>
   
- <details><Summary>Definição do backlog do produto.</Summary>
+ 
+
+<details><Summary><b>Controller de Usuário.</b></Summary>
+<pre><code>
+package com.ojavali.doisrponto.usuarios;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+    @Autowired
+    private UserRepository userRepository; 
+
+    // Criação de usuário
+    @PostMapping("/cadastrarUsuario")
+    public ResponseEntity<User> cadastrarUsuario(@RequestBody @Validated User user) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(user));
+    }
+
+    // Obter todos os usuários
+    @GetMapping("/usuarios")
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.status(HttpStatus.OK).body(userRepository.findAll());
+    }
+
+    // Obter um usuário com base no ID
+    @GetMapping("/usuarios/{id}")
+    public ResponseEntity<Object> getUsuario(@PathVariable(value = "id") Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return ResponseEntity.status(HttpStatus.OK).body(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        }
+    }
+
+    // Atualizar dados de um usuário
+    @PutMapping("/usuarios/{id}")
+    public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id") Long id, @RequestBody User updatedUser) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            BeanUtils.copyProperties(updatedUser, user, "id"); 
+            userRepository.save(user);
+            return ResponseEntity.status(HttpStatus.OK).body(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        }
+    }
+
+    // Deletar um usuário
+    @DeleteMapping("/usuarios/{id}")
+    public ResponseEntity<Object> deleteUsuario(@PathVariable(value = "id") Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            userRepository.delete(user);
+            return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso!");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        }
+    }
+}
+
+</pre></code>
+  </details>
+<details><Summary><b>Formulário de Sobreavisos.</b></Summary>
+<pre><code>
+    
+const formulario = document.querySelector("sobre-aviso-form");
+const botao = document.querySelector("submit");
+const entrada = document.querySelector(".entrada");
+const saida = document.querySelector(".saida");
+const cliente = document.querySelector(".cliente");
+const projeto = document.querySelector(".projeto");
+const cr = document.querySelector(".cr");
+const justificativa = document.querySelector(".justificativa");
+const matricula = 1;
+
+function getQueryParameter(name) {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    return urlSearchParams.get(name);
+}
+
+const username = getQueryParameter('username');
+const categoria = getQueryParameter('categoria');
+
+const usernameDisplay = document.getElementById('usernameDisplay');
+
+usernameDisplay.textContent = `Matrícula: ${username}`; // Exemplo de mensagem de boas-vindas
+function cadastrar(){
+    fetch("http://localhost:1234/cadastrarApontamentos",
+        {
+            headers: {
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            method:"POST",
+            body: JSON.stringify({
+                categoria: categoria,
+                data_hora_inicio:  entrada.value,
+                data_hora_fim: saida.value,
+                justificativa: justificativa.value,
+                usuarioMatricula:  username,
+                centroResultadosId: cr.value
+
+            })
+        })
+        .then(function (res){
+            // Verifica se a resposta da requisição foi bem-sucedida
+            if (res.ok) {
+                // Redireciona para a outra página HTML após o cadastro bem-sucedido
+                window.location.href = `listarApontamentos.html?username=${username}`;
+            } else {
+                console.log("Erro ao cadastrar");
+            }
+        })
+        .catch(function(res) {console.log(res)})
+}
+formulario.addEventListener('submit', function(event){
+    event.preventDefault();
+    cadastrar();
+});
+document.getElementById("submit2").addEventListener("click", function () {
+    // Volte para a página anterior no histórico de navegação
+    window.location.href = `listarApontamentos.html?username=${username}`;
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Execute este código após a página ser completamente carregada
+
+    // Obtém a referência ao elemento <select> com id="cr"
+    const crSelect = document.getElementById('cr');
+
+    // Faça uma solicitação AJAX (ou fetch) para buscar os IDs da URL
+    fetch('/CR')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na solicitação.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Preencha as opções do <select> com as propriedades "id" dos objetos
+            data.forEach(obj => {
+                const option = document.createElement('option');
+                option.value = obj.id.toString(); // Acesse a propriedade "id" do objeto e converta para string
+                option.textContent = obj.id.toString(); // Acesse a propriedade "id" do objeto e converta para string
+                crSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    function fetchApontamentosAndPopulateTable() {
+        const token = sessionStorage.getItem("token");
+        if (!token) {
+            window.location.href = "/index.html";
+        }
+        // Execute este código após a página ser completamente carregada
+        const crSelect = document.getElementById('cr');
+        const clienteInput = document.getElementById('cliente');
+        const projetoInput = document.getElementById('projeto');
+
+        crSelect.addEventListener('change', function () {
+        const crValue = this.value; 
+
+            if (!crValue) {
+                clienteInput.value = ''; // Limpa o campo "Cliente"
+                projetoInput.value = ''; // Limpa o campo "Projeto"
+                return;
+            }
+
+            fetch("/CR/" + crValue)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na solicitação.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Preencha os campos "cliente" e "projeto" com os dados do JSON
+                    clienteInput.value = data.nome_cliente;
+                    projetoInput.value = data.nome_projeto;
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+        });
+    }
+    fetchApontamentosAndPopulateTable();
+
+});
+
+</pre></code>
+</details>
+
+<details>
+  <summary><b>Conexão entre o backend e o front-end para cadastro de apontamentos</b></summary>
+  <pre><code>
+const formulario = document.querySelector("form");
+const botao = document.querySelector("button");
+const UserNome = document.querySelector(".name");
+const UserMatricula = document.querySelector(".matricula");
+const UserEmail = document.querySelector(".email");
+const UserSenha = document.querySelector(".password");
+const UserCategoria = document.querySelector(".role");
+
+function cadastrar() {
+    fetch("http://localhost:1234/cadastrarApontamento", {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({
+            nome: UserNome.value,
+            matricula: UserMatricula.value,
+            email: UserEmail.value,
+            senha: UserSenha.value,
+            categoria: UserCategoria.value
+        })
+    })
+    .then(function (res) { console.log(res) })
+    .catch(function (res) { console.log(res) })
+};
+
+formulario.addEventListener('submit', function (event) {
+    event.preventDefault();
+    cadastrar();
+});
+  </code></pre>
+</details>
+
+
+<details><Summary><b>Definição do backlog do produto.</b></Summary>
 
  | Rank|           Task             |Prioridade|Sprint|
 |:---------------------------------:|:----------:|:----------:|:----------:|
@@ -61,16 +314,10 @@
 |7|Como gestor, eu quero ser capaz de aprovar ou rejeitar as horas trabalhadas garantir não ter qualquer erro ou inconsistência no lançamento e fazer pagamento correto aos colaboradores.|Alta|3|
 |8|Como um colaborador, eu quero ser capaz de visualizar informações sobre as minhas próprias horas extras executadas no dashboard, para ter maior controle das horas aprovadas/ reprovadas e pagamento adequado.|Baixa|4|
 |9|Como RH, eu quero ser capaz de acessar um dashboard em tempo real que me permita monitorar as horas extras executadas pelos colaboradores, para acompanhar horas trabalhadas de acordo com as necessidades do CR|Baixa|4|
-
  
- </details>
+</details>
 
-  <details><Summary>Design da arquitetura da aplicação.</Summary></details>
-  <details><Summary>Implementação de APIs REST para apontamentos e cadastro de usuários.</Summary></details>
-  <details><Summary>Gerenciamento e otimização do banco de dados.</Summary></details>
-  <details><Summary>Desenvolvimento do backend da aplicação.</Summary></details>
 <br>
-<details>
   <summary><b>Hard skills</b></summary>
   <br>
   <table align="center">
@@ -103,10 +350,9 @@
       <td>🌟🌟🌟🌟🌟</td>
     </tr>
   </table>
-</details>
 
 
-<details><summary><b>Soft skills</b></summary>
+<summary><b>Soft skills</b></summary>
 <br>
   <table align="center">
     <tr>
@@ -142,4 +388,4 @@
       <td align="center">🌟🌟🌟</td>
     </tr>
   </table>
-</details>
+
