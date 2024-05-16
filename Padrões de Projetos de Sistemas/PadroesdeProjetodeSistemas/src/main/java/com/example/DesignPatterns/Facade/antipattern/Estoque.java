@@ -1,6 +1,6 @@
-package main.java.com.example.DesignPatterns.Facade.pattern;
+package com.example.DesignPatterns.Facade.antipattern;
 
-class Estoque {
+public class Estoque{
     public boolean verificarDisponibilidade(String produto, int quantidade) {
 
         if (produto.equals("Camiseta") && quantidade <= 10) {
