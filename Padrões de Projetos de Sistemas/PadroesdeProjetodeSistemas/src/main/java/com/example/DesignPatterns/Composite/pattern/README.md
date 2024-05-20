@@ -1,1 +1,1 @@
-![image](https://github.com/Cauana/bertoti/assets/77700346/7a5568bd-6c71-42dd-936f-9faa441ab829)
+![image](https://github.com/Cauana/bertoti/assets/77700346/99b6220c-db06-4af1-abf4-314016967b4c)
