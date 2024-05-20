@@ -5,9 +5,13 @@ import java.util.List;
 
 public class Empresa {
     private List<Departamento> departamentos = new ArrayList<>();
+    private List<Funcionario> funcionarios = new ArrayList<>();
 
     public void adicionarDepartamento(Departamento departamento) {
         departamentos.add(departamento);
+    }
+    public void adicionarFuncionarios(Funcionario funcionario) {
+        funcionarios.add(funcionario);
     }
 
     public void mostrarDetalhesDepartamentos() {
