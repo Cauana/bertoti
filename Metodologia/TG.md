@@ -1,3 +1,4 @@
+
 <h1>Portfólio das APIs - Cauana Dias Costa</h1>
 
 <h4>Introdução</h4>
@@ -21,9 +22,331 @@
 <br>
 <p align="justify">Aprendizados sobre a linguagem de programação Java, pude desenvolver a lógica da aplicação, desenvolvi a capacidade de projetar e implementar APIs RESTful para expor operações CRUD, garantindo uma comunicação eficaz entre diferentes componentes do sistema e possibilitando a integração com outras aplicações. Obtive experiência prática com bancos de dados relacionais, como PostgreSQL, aprendendo a armazenar e recuperar dados de forma eficiente e segura.</p>
 <p align="justify">Aprimorei minhas habilidades em utilizar o Git para controle de versão do código-fonte e colaboração em equipe, garantindo um fluxo de trabalho suave e colaborativo durante todo o desenvolvimento do projeto. Além de conseguir adquirir conhecimentos básicos de tecnologias front-end, incluindo HTML, CSS e JavaScript, permitindo-me construir interfaces de usuário interativas e amigáveis para os usuários finais.</p></details>
-
+</details>
 
 <h4>Meus Projetos</h4>
+
+<h4>Em 2022-2</h4> 
+<p align="justify"> A solução desenvolvida, chamada "Agile Assessment" foi um sistema que realiza a avaliação 360° entre os membros de uma equipe scrum, sendo uma avaliação de seus pares de equipe, a si mesmo e de professores, utilizando a Escala Likert como parâmetro.</p>
+
+<p align="center"><img src="https://github.com/user-attachments/assets/5063a5ed-99b7-4fff-ba57-8ea1fe8242ba" width="70%"></p>
+
+    
+[GIT]([https://github.com/oJavaLi/doisrponto?tab=readme-ov-file](https://github.com/Pythonators/API_semestre1_pythonators?tab=readme-ov-file))
+
+<summary><b>Tecnologias Utilizadas</b></summary>
+<br>
+<ul>
+    <li><strong>Figma:</strong> Ferramenta para design e prototipação de interfaces, usada para desenvolver o layout e o fluxo visual do sistema.</li>
+    <li><strong>Python Flask:</strong> Framework leve para desenvolvimento de aplicações web em Python, utilizado para implementar a lógica do backend e as rotas da aplicação.</li>
+    <li><strong>Git:</strong> Sistema de controle de versão distribuído, utilizado para gerenciar o código-fonte e colaborar com a equipe.</li>
+    <li><strong>HTML, CSS e JavaScript:</strong> Tecnologias de frontend usadas para construir a interface de usuário, estilizar o conteúdo e adicionar interatividade às páginas.</li>
+    <li><strong>TinyDB:</strong> Banco de dados NoSQL leve, em Python, utilizado para armazenar e gerenciar os dados da aplicação de forma ágil e integrada.</li>
+</ul>
+
+
+<b>Contribuições Pessoais</summary></b>
+<br>
+<p align="justify">Desempenhei o papel de Desenvolvedora, fui responsável pela estruturação de telas de avaliações construindo a interface gráfica, a estrutura de avaliações e o formulário de submissão, permitindo a interação do frontend por meio de formulários ao backend, que foi realizado através de banco de dados e json. Além disso trabalhei no CRUD (Criação, Deleção, Edição e Leitura) de dados de cadastro de professores.</p>
+  
+ 
+
+<details><Summary><b>Interface de Avaliação dos Professores</b></Summary>
+
+![image](https://github.com/user-attachments/assets/529d760a-47f4-41fe-ac5a-0679fdd78cc2)
+
+
+<pre><code>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alunos</title>
+    <script src="script/script.js"></script>
+    <!--    https://fontawesome.com/   -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_avaliacao.css') }}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<!-- BARRA SUPERIOR-->
+    <!--  começo do flashcard-->
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
+    <!--fim flashcard, FAVOR, PERSONALIZAR! Fonte: https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/-->
+    <nav class="navbar " id="barraSuperior">
+      <div class="container-fluid" id="barraSuperior">
+        <span class="intername" >{{session['usuario_logado']}}</span>
+       
+    
+        <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="OBotao">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+    
+            <div class="modal true" id="exampleModal" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header" id="menuInter">
+                    <h5 class="modal-title">MENU</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+            
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><a style="text-decoration:none; color:#2D3142" href="/aluno/avaliacao">Avaliar</a></li>                  
+                      <li class="list-group-item"><a style="text-decoration:none; color:#2D3142" href="/dashboard">Visualizar suas notas</a></li>
+                      <li class="list-group-item" ><a style="text-decoration:none; color:red" href="/logout">SAIR</a></li>
+                    </ul>
+            
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container text-center"></div>
+      </body>
+      {% block conteudo %}
+      {% endblock %}  
+    <h1>REALIZAR AVALIAÇÕES</h1>
+    <div class = "centralizar">
+        {% for itens2 in alunos_turma%}
+            <details>
+                 <summary>PO: {{itens2}}</summary>
+                 {% for pergunt in perguntas %}
+                    <ul>
+                        <il>{{pergunt.pergunta_}}</il>
+                        <form action="/aluno/notas" method="POST">
+                        <ul>
+<!--                        <li >Extramamente -->
+                                <input type="radio" value="5" name="{{itens2}}{{pergunt.name}}"required>Extremamente</input>
+    <!--                            </li>-->
+    <!--                        <li >Muito -->
+                                <input type="radio" value= '4' name="{{itens2}}{{pergunt.name}}"required>Muito</input>
+    <!--                        </li>-->
+    <!--                        <li >médio -->
+                                <input type="radio" value='3' name="{{itens2}}{{pergunt.name}}"required> Médio</input>
+    <!--                            </li>-->
+    <!--                        <li >pouco -->
+                                <input type="radio" value='2' name="{{itens2}}{{pergunt.name}}"required>Pouco</input>
+    <!--                            </li> nada-->
+                                <input type="radio" value='1' name="{{itens2}}{{pergunt.name}}"required>Nada</input>
+    <!--                            </li>-->
+                        </ul>
+
+</ul>
+                {% endfor %}
+                
+
+            </details>
+        {%endfor%}
+
+        {% for itens in alunos_turma2%}
+            <details>
+                 <summary>SCRUM MASTER: {{itens}}</summary>
+                 {% for pergunt in perguntas %}
+                    <ul>
+                        <il>{{pergunt.pergunta_}}</il>
+                        <form action="/aluno/notas" method="POST">
+                        <ul>
+<!--                        <li >Extramamente -->
+                                <input type="radio" value="5" name="{{itens}}{{pergunt.name}}"required>Extremamente</input>
+    <!--                            </li>-->
+    <!--                        <li >Muito -->
+                                <input type="radio" value= '4' name="{{itens}}{{pergunt.name}}"required>Muito</input>
+    <!--                        </li>-->
+    <!--                        <li >médio -->
+                                <input type="radio" value='3' name="{{itens}}{{pergunt.name}}"required> Médio</input>
+    <!--                            </li>-->
+    <!--                        <li >pouco -->
+                                <input type="radio" value='2' name="{{itens}}{{pergunt.name}}"required>Pouco</input>
+    <!--                            </li> nada-->
+                                <input type="radio" value='1' name="{{itens}}{{pergunt.name}}"required>Nada</input>
+    <!--                            </li>-->
+                        </ul>
+
+</ul>
+                {% endfor %}
+                <textarea rows="8" cols="50" name="justificativa" id="coment" maxlength="3000"></textarea>
+
+            </details>
+        {%endfor%}
+                <br>
+        <button type="submit">ENVIAR AVALIAÇÕES</button>
+</form>
+</div>
+</body>
+</html>
+</pre></code>
+</form>
+</details>
+
+
+<details><Summary><b>Interface de Cadastro e Gerenciamento de Professores</b></Summary>
+
+![image](https://github.com/user-attachments/assets/fed6be23-5d00-41f4-ae73-dbfe7ed6930d)
+
+
+
+<pre><code>
+{% extends 'admin.html' %}
+
+{% block conteudo %}
+<body>
+    <div class="content">
+      <div class="card-body">
+        <h1>Cadastro de Professores</h1>
+        <hr>
+        <form style="width: 20rem;" action="cadastrar" method="POST">
+          <div class="form-floating mb-3">
+          </div>
+        
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control"  id="nome" name="nome" nome_completo="floatingInput" style="background-color:#ADACB5;" placeholder="NOME COMPLETO"required>
+            <label for="floatingInput">NOME COMPLETO</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" name="usuario" usuario="floatingInput" style="background-color:#ADACB5;" placeholder="cargo" id="usuario"required>
+            <label for="floatingInput">USUARIO</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="senha" name="senha" senha="floatingInput" style="background-color:#ADACB5;" placeholder="SENHA"required>
+            <label for="floatingInput">SENHA</label>
+        </div>
+        <div class="form-floating mb-3">
+        <div>
+          <button type="submit" name="Enviar" class="btn btn-primary">Cadastrar</button>
+        </div></form>
+      </div>
+    </div>
+    <hr>
+    <h1>Professores cadastrados</h1>
+    <table class="table">
+      <tr>
+        <th>id</th>
+        <th>nome_completo</th>
+        <th>usuario</th>
+        <th>senha</th>
+       </tr>
+      {% for contato in result %}
+      <tr>
+        <td>{{contato.id}}</td>
+        <td>{{contato.nome}}</td>
+        <td>{{contato.usuario}}</td>
+        <td>{{contato.senha}}</td>
+        <td><a class="btn btn-danger" href='/deletar/{{contato["id"]}}'>
+          <i class="bi bi-trash"> </i>Deletar</a>
+          <a href='/atualizar/{{contato["id"]}}'class="btn btn-secondary">
+            <i class="bi bi-arrow-clockwise"> </i>Atualizar</a></td>
+      </tr>
+      {% endfor %}
+
+    </table>
+    <div class="opacMenu"></div>
+{% endblock %}
+</pre></code>
+</details>
+
+<details><Summary><b>Definição do backlog do produto.</b></Summary>
+
+## Backlog do Produto <br id=c>
+    
+| Sprint |           Descrição               |                                            User Storie                                            | Prioridade |
+|:------:|:--------------------------------: | :----------------------------------------------------------------------------------------: |         :------:  |
+|   01   | Haverá um painel mostrando todas perguntas e possibilidades de avaliação, com 5 botões de avaliação | Eu como aluno quero poder realizar minhas avaliações para manter uma informação sobre o desempenho do time | Imprescindível |
+|   01   | Haverá um painel com dados da sprint | Eu como aluno quero poder acessar minhas informações de sprint para melhor gerenciamento  | Importante |
+|   01   | Haverá uma base de dados para avaliações | Eu como PBLTeX quero ter as avaliações armazenadas para não perder os dados de avaliações realizadas | Imprescindível |
+|   01   | Haverá uma base de dados para login | Eu como PBLTeX quero ter uma tela de autenticação para conseguir entrar em determinados perfis | Imprescindível |
+|   02   | Haverá uma diferenciação de times no cadastro | Eu como aluno quero ter minhas informações de grupo para melhor controle de qual é meu grupo e suas qualidades | Importante |
+|   02   |Haverá uma diferenciação entre aluno e professor  | Eu como cliente quero que haja uma diferenciação entre aluno e orientador para melhor diferenciação de dados | Importante |
+|   02   | Haverá uma tela de admin | Eu como PBLTeX quero que haja um perfil administrador para cadastrar ou retirar cadastro dos usuários | Imprescindível |
+|   03   | Haverá uma tela de avaliação ao ScrumMaster | Eu como líder técnico quero poder avaliar meu aluno líder técnico para manter um bom rendimento de atividades | Importante |
+|   03   | Haverá uma tela de avaliação ao PO | Eu como fake client quero avaliar meu aluno PO para manter bom rendimento e alterar pontos fracos | Imprescindível |
+|   03  | Haverá um sistema de profiles | Eu como administrador quero atribuir um perfil específico a cada usuário cadastrado para que eu possa utilizar esse dado sistemicamente após sua autenticação | Imprescindível |
+|   04   | Haverão telas de demonstração de pontuação | Eu como usuário quero que os dados sejam demonstrados de forma direta e prática para facilitação de entendimento |  Importante |
+|   04  | Haverá uma visualização de avaliação geral | Eu como instrutor quero ter acesso a avaliação de meus alunos para saber qual seu rendimento na visão do time| Imprescindível |
+|   04  | Haverá um dashboard ligado as informações de time, de sprint e de avaliações de usuário | Eu como aluno quero ter um dashboard para melhor facilidade de acompanhamento | Imprescindível |
+<br/>
+
+</details>
+
+<br>
+  <summary><b>Hard skills</b></summary>
+  <br>
+  <table align="center">
+    <tr>
+      <td align="center"><b>Python:</b></td>
+      <td>🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Flask:</b></td>
+      <td>🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Git:</b></td>
+      <td>🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>HTML/CSS/JavaScript:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+  </table>
+
+
+<summary><b>Soft skills</b></summary>
+<br>
+  <table align="center">
+    <tr>
+      <td align="center"><b>Comunicação Efetiva:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Trabalho em Equipe:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Resolução de Problemas:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Adaptabilidade:</b></td>
+      <td>🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Atenção aos Detalhes:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Gestão do Tempo:</b></td>
+      <td>🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Aprendizado Contínuo:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Resiliência:</b></td>
+      <td>🌟🌟🌟</td>
+    </tr>
+  </table>
+
 
 <h4>Em 2023-2</h4> 
 <p align="justify">O produto 2Rponto é um sistema que realiza o controle de horas excedentes de colaboradores da empresa 2RP Net. A empresa parceira é conhecida por disponibilizar soluções para análise de informações em tempo real para tomada de decisões de negócios que precisam atender requisitos de tempo extremamente rigorosos. As soluções inovadoras e customizadas a diferenciam no mercado, assim como os serviços, permitem o crescimento de negócio e de seus resultados.</p>
