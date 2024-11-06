@@ -56,15 +56,16 @@
 ![image](https://github.com/user-attachments/assets/529d760a-47f4-41fe-ac5a-0679fdd78cc2)
 
 
-<pre><code>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Alunos</title>
-    <script src="script/script.js"></script>
+<code>
+    
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lista de Alunos</title>
+        <script src="script/script.js"></script>
     <!--    https://fontawesome.com/   -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
@@ -73,8 +74,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='style_avaliacao.css') }}">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-</head>
-<body>
+    </head>
+    <body>
 <!-- BARRA SUPERIOR-->
     <!--  começo do flashcard-->
       {% with messages = get_flashed_messages() %}
@@ -151,7 +152,7 @@
     <!--                            </li>-->
                         </ul>
 
-</ul>
+    </ul>
                 {% endfor %}
                 
 
@@ -182,7 +183,7 @@
     <!--                            </li>-->
                         </ul>
 
-</ul>
+    </ul>
                 {% endfor %}
                 <textarea rows="8" cols="50" name="justificativa" id="coment" maxlength="3000"></textarea>
 
@@ -190,11 +191,11 @@
         {%endfor%}
                 <br>
         <button type="submit">ENVIAR AVALIAÇÕES</button>
-</form>
-</div>
-</body>
-</html>
-</form>
+    </form>
+    </div>
+    </body>
+    </html>
+    </form>
 </pre></code>
 </details>
 
@@ -205,18 +206,19 @@
 
 
 
-<pre><code>
-{% extends 'admin.html' %}
-
-{% block conteudo %}
-<body>
-    <div class="content">
-      <div class="card-body">
-        <h1>Cadastro de Professores</h1>
-        <hr>
-        <form style="width: 20rem;" action="cadastrar" method="POST">
-          <div class="form-floating mb-3">
-          </div>
+<code>
+    
+    {% extends 'admin.html' %}
+    
+    {% block conteudo %}
+    <body>
+        <div class="content">
+          <div class="card-body">
+            <h1>Cadastro de Professores</h1>
+            <hr>
+            <form style="width: 20rem;" action="cadastrar" method="POST">
+              <div class="form-floating mb-3">
+              </div>
         
         <div class="form-floating mb-3">
           <input type="text" class="form-control"  id="nome" name="nome" nome_completo="floatingInput" style="background-color:#ADACB5;" placeholder="NOME COMPLETO"required>
@@ -260,8 +262,8 @@
 
     </table>
     <div class="opacMenu"></div>
-{% endblock %}
-</pre></code>
+    {% endblock %}
+</code>
 </details>
 
 <details><Summary><b>Definição do backlog do produto.</b></Summary>
