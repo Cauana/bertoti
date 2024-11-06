@@ -916,3 +916,248 @@ formulario.addEventListener('submit', function (event) {
     </tr>
   </table>
 
+<h4>Em 2024-1</h4> 
+<p align="justify">A Oracle Partner Tracker é uma plataforma moderna e inteligente de gerenciamento e análise de dados, capaz de interpretar, organizar e representar os dados do sistema OPN da empresa parceira Oracle. Entre os objetivos principais do projeto, se encontram a modernização do acompanhamento das empresas parceiras Oracle, assim como a visualização de dados de forma inteligente, para facilitar a identificação de melhorias e de conclusões estratégicas.</p>
+
+<p align="center"><img src="https://github.com/Cauana/bertoti/assets/77700346/2c90ccaa-860e-44a9-afa8-b276b372905e" width="70%"></p>
+
+    
+[GIT](https://github.com/oJavaLi/doisrponto?tab=readme-ov-file)
+
+<summary><b>Tecnologias Utilizadas</b></summary>
+<br>
+<ul>
+    <li><strong>Jira:</strong> Plataforma de gestão de projetos e rastreamento de tarefas, com foco em equipes de desenvolvimento ágil.</li>
+    <li><strong>Figma:</strong> Plataforma de design de interface do usuário baseada em nuvem, colaborativa e voltada para criação de protótipos.</li>
+    <li><strong>HTML, CSS e JavaScript:</strong> Tecnologias de frontend usadas para construir a interface de usuário, estilizar o conteúdo e adicionar interatividade às páginas.</li>
+    <li><strong>Swagger:</strong> Conjunto de ferramentas para descrever, consumir e visualizar APIs RESTful.</li>
+    <li><strong>MySQL:</strong> Sistema de gerenciamento de banco de dados relacional de código aberto para armazenar e consultar dados estruturados.</li>
+    <li><strong>VueJS:</strong> Framework JavaScript progressivo para construção de interfaces de usuário e aplicações de página única (SPA).</li>
+    <li><strong>Java:</strong> Linguagem de programação orientada a objetos, amplamente utilizada no desenvolvimento de software corporativo e aplicações web.</li>
+    <li><strong>Spring Boot:</strong> Framework Java que facilita a configuração e desenvolvimento de aplicações Java de forma rápida e com menos complexidade.</li>
+    <li><strong>Hibernate:</strong> Framework de mapeamento objeto-relacional para Java, facilitando a interação entre objetos Java e bancos de dados relacionais.</li>
+</ul>
+<b>Contribuições Pessoais</b>
+</summary><br>
+<p align="justify">Desempenhei o papel de Desenvolvedora, criando endpoints REST para fornecer informações sobre certificações por usuário, além de desenvolver as entidades e enums necessários para estruturar os dados. Também trabalhei na implementação de lógicas de negócios para garantir a correta manipulação das informações de certificação e na integração com o banco de dados.</p>
+ 
+
+<details><Summary><b>Certificação por Usuário.</b></Summary>
+<pre><code>
+package com.ojavali.doisrponto.usuarios;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+    @Autowired
+    private UserRepository userRepository; 
+
+    // Criação de usuário
+    @PostMapping("/cadastrarUsuario")
+    public ResponseEntity<User> cadastrarUsuario(@RequestBody @Validated User user) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(user));
+    }
+
+    // Obter todos os usuários
+    @GetMapping("/usuarios")
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.status(HttpStatus.OK).body(userRepository.findAll());
+    }
+
+    // Obter um usuário com base no ID
+    @GetMapping("/usuarios/{id}")
+    public ResponseEntity<Object> getUsuario(@PathVariable(value = "id") Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return ResponseEntity.status(HttpStatus.OK).body(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        }
+    }
+
+    // Atualizar dados de um usuário
+    @PutMapping("/usuarios/{id}")
+    public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id") Long id, @RequestBody User updatedUser) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            BeanUtils.copyProperties(updatedUser, user, "id"); 
+            userRepository.save(user);
+            return ResponseEntity.status(HttpStatus.OK).body(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        }
+    }
+
+    // Deletar um usuário
+    @DeleteMapping("/usuarios/{id}")
+    public ResponseEntity<Object> deleteUsuario(@PathVariable(value = "id") Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            userRepository.delete(user);
+            return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso!");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        }
+    }
+}
+
+</pre></code>
+</details>
+
+
+<details><Summary><b>Definição do backlog do produto.</b></Summary>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>US</th>
+            <th>Como Um</th>
+            <th>Eu Preciso</th>
+            <th>Para</th>
+            <th>Prioridade</th>
+            <th>Sprint</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Administrador</td>
+            <td>Acessar um dashboard que apresente informações gerais sobre o sistema e os parceiros.</td>
+            <td>Ter uma visão abrangente do contexto.</td>
+            <td>Imprescindível</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Administrador</td>
+            <td>Importar um arquivo CSV com dados relevantes, e tê-lo tratado e incorporado na plataforma.</td>
+            <td>Adicionar e atualizar os dados do sistema.</td>
+            <td>Imprescindível</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Administrador</td>
+            <td>Utilizar filtros no dashboard, para visualização específicas de dados, como durante um período de tempo ou uma quantidade específica.</td>
+            <td>Facilitar a análise de dados.</td>
+            <td>Importante</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Administrador</td>
+            <td>Visualizar as OPN Tracks mais utilizadas em um campo dedicado no dashboard.</td>
+            <td>Entender as áreas de maior interesse e atividade.</td>
+            <td>Importante</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Administrador</td>
+            <td>Visualizar quanto cada OPN Track representa do total de parceiros Oracle.</td>
+            <td>Entender a popularidade das tracks.</td>
+            <td>Desejável</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Administrador</td>
+            <td>Visualizar a porcentagem da expertise total de cada parceiro Oracle.</td>
+            <td>Entender a distribuição de habilidades dentro da plataforma.</td>
+            <td>Desejável</td>
+            <td>2</td>
+        </tr>
+    </tbody>
+</table>
+
+</details>
+
+<br>
+  <summary><b>Hard skills</b></summary>
+  <br>
+  <table align="center">
+    <tr>
+      <td align="center"><b>Java:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Java Spring Framework:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Banco de Dados Relacionais, PostgreSQL:</b></td>
+      <td>🌟🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Git:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>RESTful APIs:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>HTML/CSS/JavaScript:</b></td>
+      <td>🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Diagrama DER:</b></td>
+      <td>🌟🌟🌟🌟🌟</td>
+    </tr>
+  </table>
+
+
+<summary><b>Soft skills</b></summary>
+<br>
+  <table align="center">
+    <tr>
+      <td align="center"><b>Comunicação Efetiva:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Trabalho em Equipe:</b></td>
+      <td>🌟🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Resolução de Problemas:</b></td>
+      <td>🌟🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Adaptabilidade:</b></td>
+      <td>🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Atenção aos Detalhes:</b></td>
+      <td>🌟🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Gestão do Tempo:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Aprendizado Contínuo:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Resiliência:</b></td>
+      <td>🌟🌟🌟</td>
+    </tr>
+  </table>
