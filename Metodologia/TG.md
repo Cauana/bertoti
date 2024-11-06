@@ -194,8 +194,8 @@
 </div>
 </body>
 </html>
-</pre></code>
 </form>
+</pre></code>
 </details>
 
 
@@ -347,6 +347,207 @@
     </tr>
   </table>
 
+<h4>Em 2023-1</h4> 
+<p align="justify">O produto em parceria com a 2RP é um sistema que realiza o controle de horas excedentes de colaboradores da empresa. A empresa parceira é conhecida por disponibilizar soluções para análise de informações em tempo real para tomada de decisões de negócios que precisam atender requisitos de tempo extremamente rigorosos. As soluções inovadoras e customizadas a diferenciam no mercado, assim como os serviços, permitem o crescimento de negócio e de seus resultados.</p>
+
+<p align="center"><img src="https://github.com/user-attachments/assets/47537933-29eb-4be1-9125-8afe2555c88a" width="70%"></p>
+
+<p align="justify">Anteriormente, a empresa enfrentava desafios na gestão de horas, dependendo de várias planilhas, o que limitava a disponibilidade, flexibilidade e controle necessários. Em resposta, desenvolvemos uma aplicação que centraliza o controle de horas excedentes, distinguindo entre horas extras e sobreavisos. Essa aplicação também oferece recursos de aprovação ou reprovação das horas pelo gestor da equipe e pelo departamento de Recursos Humanos. Além disso, inclui painéis de controle para os colaboradores visualizarem suas horas aprovadas ou reprovadas, enquanto gestores e RH podem monitorar as pendências de aprovação de seus respectivos usuários. </p>
+    
+[GIT](https://github.com/oJavaLi/doisrponto?tab=readme-ov-file)
+
+<summary><b>Tecnologias Utilizadas</b></summary>
+<br>
+<ul>
+    <li><strong>Figma:</strong> Plataforma de design de interface do usuário.</li>
+    <li><strong>Java Spring:</strong> Framework de desenvolvimento Java com gama de recursos para desenvolver aplicativos robustos e escaláveis.</li>
+    <li><strong>Git:</strong> Sistema de controle de versão distribuído.</li>
+    <li><strong>Slack:</strong> Plataforma de comunicação empresarial.</li>
+    <li><strong>PostgreSQL:</strong> Sistema de gerenciamento de banco de dados relacional de código aberto para armazenar dados cadastrados.</li>
+</ul>
+
+<b>Contribuições Pessoais</summary></b>
+<br>
+<p align="justify">Desempenhei o papel de Scrum Master, sendo responsável por facilitar a comunicação e coordenação entre a equipe e a empresa parceira, a 2RP. Durante o desenvolvimento do sistema de controle de horas excedentes, atuei na remoção de impedimentos para o time e garanti que os princípios ágeis fossem seguidos, promovendo um ambiente colaborativo e focado nos objetivos. Além disso, organizei as cerimônias do Scrum, como as reuniões diárias, revisões de sprint, e retrospectivas, assegurando que a equipe estivesse alinhada em relação aos requisitos do cliente e que o desenvolvimento fosse ágil e contínuo. 
+Além disso, atuei na criação do Diagrama Entidade Relacionamento - DER, e na criação da interface de Apontamento de Horas Extras.</p>
+
+<details><summary><b>Interface de Apontamento de Horas Extras</b></summary>
+
+![image](https://github.com/user-attachments/assets/269aa6b3-a884-4697-baf0-b02ccebdb3ba)
+
+<code>
+    
+    package com.ojavali.doisrponto.usuarios;
+
+    import org.springframework.beans.BeanUtils;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.validation.annotation.Validated;
+    import org.springframework.web.bind.annotation.*;
+    
+    import java.util.List;
+    import java.util.Optional;
+    
+    @RestController
+    @RequestMapping("/api/users")
+    public class UserController {
+
+    @Autowired
+    private UserRepository userRepository; 
+
+    // Criação de usuário
+    @PostMapping("/cadastrarUsuario")
+    public ResponseEntity<User> cadastrarUsuario(@RequestBody @Validated User user) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(user));
+    }
+
+    // Obter todos os usuários
+    @GetMapping("/usuarios")
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.status(HttpStatus.OK).body(userRepository.findAll());
+    }
+
+    // Obter um usuário com base no ID
+    @GetMapping("/usuarios/{id}")
+    public ResponseEntity<Object> getUsuario(@PathVariable(value = "id") Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return ResponseEntity.status(HttpStatus.OK).body(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        }
+    }
+
+    // Atualizar dados de um usuário
+    @PutMapping("/usuarios/{id}")
+    public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id") Long id, @RequestBody User updatedUser) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            BeanUtils.copyProperties(updatedUser, user, "id"); 
+            userRepository.save(user);
+            return ResponseEntity.status(HttpStatus.OK).body(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        }
+    }
+
+    // Deletar um usuário
+    @DeleteMapping("/usuarios/{id}")
+    public ResponseEntity<Object> deleteUsuario(@PathVariable(value = "id") Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            userRepository.delete(user);
+            return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso!");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        }
+    }
+            
+</code>
+</details>
+
+<details><summary><b>Diagrama Entidade Relacionamento - DER</b></summary>
+
+  ![image](https://github.com/user-attachments/assets/8ec5ae62-b894-400d-b076-75e22fce3c1c)
+
+</details>
+
+
+<details><Summary><b>Definição do backlog do produto.</b></Summary>
+
+|           Task             | Importância|
+|:---------------------------------:|:----------:|
+|Como um colaborador gostaria de ter um sistema onde consiga ser capaz de lançar todas as informações sobre horas excedentes trabalhadas, para poder ser pago.|1|
+|Como colaborador eu quero ser capaz de diferenciar horas extra de sobreaviso para controlar melhor meu tempo de trabalho e ter pagamento adequado.|2|
+|Como um RH, eu quero ser capaz de visualizar os apontamentos submetidos por cada funcionário, para que eu possa revisar a carga trabalhada para submeter a pagamento.|3|
+|Como RH, eu quero ser capaz de aprovar ou rejeitar as horas trabalhadas garantir não ter qualquer erro ou inconsistência no lançamento e fazer pagamento correto aos colaboradores.|4|
+|Como RH, eu gostaria de ter a permissão de criar e gerenciar contas de um usuário com diferentes níveis de acesso, para poder cadastrar os funcionários em segurança no meu sistema.|5|
+|Como um gestor, eu quero ser capaz de visualizar os apontamentos submetidos pelo meu CR, para que eu possa revisar a carga trabalhada para submeter a pagamento.|6|
+|Como gestor, eu quero ser capaz de aprovar ou rejeitar as horas trabalhadas garantir não ter qualquer erro ou inconsistência no lançamento e fazer pagamento correto aos colaboradores.|7|
+|Como um colaborador, eu quero ser capaz de visualizar informações sobre as minhas próprias horas extras executadas no dashboard, para ter maior controle das horas aprovadas/ reprovadas e pagamento adequado.|8|
+|Como RH, eu quero ser capaz de acessar um dashboard em tempo real que me permita monitorar as horas extras executadas pelos colaboradores, para acompanhar horas trabalhadas de acordo com as necessidades do CR|9|
+
+</details>
+
+<br>
+  <summary><b>Hard skills</b></summary>
+  <br>
+  <table align="center">
+    <tr>
+      <td align="center"><b>Java:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Java Spring Framework:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Banco de Dados Relacionais, PostgreSQL:</b></td>
+      <td>🌟🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Git:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>RESTful APIs:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>HTML/CSS/JavaScript:</b></td>
+      <td>🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Diagrama DER:</b></td>
+      <td>🌟🌟🌟🌟🌟</td>
+    </tr>
+  </table>
+
+
+<summary><b>Soft skills</b></summary>
+<br>
+  <table align="center">
+    <tr>
+      <td align="center"><b>Comunicação Efetiva:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Trabalho em Equipe:</b></td>
+      <td>🌟🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Resolução de Problemas:</b></td>
+      <td>🌟🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Adaptabilidade:</b></td>
+      <td>🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Atenção aos Detalhes:</b></td>
+      <td>🌟🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Gestão do Tempo:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Aprendizado Contínuo:</b></td>
+      <td>🌟🌟🌟🌟</td>
+    </tr>
+    <tr>
+      <td align="center"><b>Resiliência:</b></td>
+      <td>🌟🌟🌟</td>
+    </tr>
+  </table>
+
 
 <h4>Em 2023-2</h4> 
 <p align="justify">O produto 2Rponto é um sistema que realiza o controle de horas excedentes de colaboradores da empresa 2RP Net. A empresa parceira é conhecida por disponibilizar soluções para análise de informações em tempo real para tomada de decisões de negócios que precisam atender requisitos de tempo extremamente rigorosos. As soluções inovadoras e customizadas a diferenciam no mercado, assim como os serviços, permitem o crescimento de negócio e de seus resultados.</p>
@@ -450,7 +651,8 @@ public class UserController {
 }
 
 </pre></code>
-  </details>
+</details>
+
 <details><Summary><b>Formulário de Sobreavisos.</b></Summary>
 <pre><code>
     
