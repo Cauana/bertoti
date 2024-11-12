@@ -917,9 +917,9 @@ formulario.addEventListener('submit', function (event) {
   </table>
 
 <h4>Em 2024-1</h4> 
-<p align="justify">A Oracle Partner Tracker é uma plataforma moderna e inteligente de gerenciamento e análise de dados, capaz de interpretar, organizar e representar os dados do sistema OPN da empresa parceira Oracle. Entre os objetivos principais do projeto, se encontram a modernização do acompanhamento das empresas parceiras Oracle, assim como a visualização de dados de forma inteligente, para facilitar a identificação de melhorias e de conclusões estratégicas.</p>
+<p align="justify">A Oracle Partner Tracker é uma plataforma moderna e inteligente de gerenciamento e análise de dados, capaz de interpretar, organizar e representar os dados do sistema OPN da empresa parceira Oracle. Entre os objetivos principais do projeto, se encontram a modernização do acompanhamento das empresas parceiras Oracle, assim como a visualização de dados de forma inteligente de Tracks e Expertises de cada empresa parceira, para facilitar a identificação de melhorias e de conclusões estratégicas.</p>
 
-<p align="center"><img src="https://github.com/Cauana/bertoti/assets/77700346/2c90ccaa-860e-44a9-afa8-b276b372905e" width="70%"></p>
+<p align="center"><img src="https://github.com/user-attachments/assets/c6aad513-edad-42ed-bcfd-45cb2d8e1e72" width="70%"></p>
 
     
 [GIT](https://github.com/oJavaLi/doisrponto?tab=readme-ov-file)
@@ -939,7 +939,7 @@ formulario.addEventListener('submit', function (event) {
 </ul>
 <b>Contribuições Pessoais</b>
 </summary><br>
-<p align="justify">Desempenhei o papel de Desenvolvedora, criando endpoints REST para fornecer informações sobre certificações por usuário, além de desenvolver as entidades e enums necessários para estruturar os dados. Também trabalhei na implementação de lógicas de negócios para garantir a correta manipulação das informações de certificação e na integração com o banco de dados.</p>
+<p align="justify">Desempenhei o papel de Desenvolvedora, criando endpoints REST para fornecer informações sobre expertises e tracks por empresas parceiras, além de desenvolver CRUD para o cadastro de novas Workloads, ou seja, cargas de trabalho que os parceiros podem obter. Também trabalhei na implementação de lógicas de negócios para garantir a correta manipulação das informações e na integração com o banco de dados.</p>
  
 
 <details><Summary><b>Certificação por Usuário.</b></Summary>
