@@ -1073,6 +1073,7 @@ public interface WorkloadRepository extends JpaRepository <Workload,Long>{
 <details><Summary><b>Definição do backlog do produto.</b></Summary>
 
 
+
 <table>
     <thead>
         <tr>
@@ -1136,6 +1137,7 @@ public interface WorkloadRepository extends JpaRepository <Workload,Long>{
     </tbody>
 </table>
 
+<br>
 </details>
 
 <br>
