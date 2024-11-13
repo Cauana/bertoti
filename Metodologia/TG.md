@@ -942,83 +942,131 @@ formulario.addEventListener('submit', function (event) {
 <p align="justify">Desempenhei o papel de Desenvolvedora, criando endpoints REST para fornecer informações sobre expertises e tracks por empresas parceiras, além de desenvolver CRUD para o cadastro de novas Workloads, ou seja, cargas de trabalho que os parceiros podem obter. Também trabalhei na implementação de lógicas de negócios para garantir a correta manipulação das informações e na integração com o banco de dados.</p>
  
 
-<details><Summary><b>Certificação por Usuário.</b></Summary>
+<details><Summary><b>Cadastro de Workload</b></Summary>
+<p align="center"><img src="https://github.com/user-attachments/assets/a9969e5f-c1b3-4a1f-9be7-ddfa8d33d17f" width="70%"></p>
 <pre><code>
-package com.ojavali.doisrponto.usuarios;
-
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
-
-@RestController
-@RequestMapping("/api/users")
-public class UserController {
-
-    @Autowired
-    private UserRepository userRepository; 
-
-    // Criação de usuário
-    @PostMapping("/cadastrarUsuario")
-    public ResponseEntity<User> cadastrarUsuario(@RequestBody @Validated User user) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(user));
-    }
-
-    // Obter todos os usuários
-    @GetMapping("/usuarios")
-    public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity.status(HttpStatus.OK).body(userRepository.findAll());
-    }
-
-    // Obter um usuário com base no ID
-    @GetMapping("/usuarios/{id}")
-    public ResponseEntity<Object> getUsuario(@PathVariable(value = "id") Long id) {
-        Optional<User> userOptional = userRepository.findById(id);
-
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            return ResponseEntity.status(HttpStatus.OK).body(user);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+ @PostMapping
+    @Operation(summary = "Insert Workload", description = "Insert a new Workload")
+    @ApiResponses( value = {
+        @ApiResponse(
+            responseCode = "201",
+            description = "Workload inserted",
+            content = @Content(
+                schema = @Schema(implementation = WorkloadDTO.class)
+            )
+        ),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Workload already exists"
+        )
+    })
+    public ResponseEntity<WorkloadDTO> insertWorkload(@RequestBody WorkloadDTO workloadDTO){
+        
+        workloadDTO = workloadService.insertWorkload(workloadDTO).get();
+        if (workloadDTO == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(workloadDTO.getId()).toUri();
+        return ResponseEntity.created(uri).body(workloadDTO);
     }
-
-    // Atualizar dados de um usuário
-    @PutMapping("/usuarios/{id}")
-    public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id") Long id, @RequestBody User updatedUser) {
-        Optional<User> userOptional = userRepository.findById(id);
-
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            BeanUtils.copyProperties(updatedUser, user, "id"); 
-            userRepository.save(user);
-            return ResponseEntity.status(HttpStatus.OK).body(user);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
-        }
-    }
-
-    // Deletar um usuário
-    @DeleteMapping("/usuarios/{id}")
-    public ResponseEntity<Object> deleteUsuario(@PathVariable(value = "id") Long id) {
-        Optional<User> userOptional = userRepository.findById(id);
-
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            userRepository.delete(user);
-            return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso!");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
-        }
-    }
-}
 
 </pre></code>
+
+<pre><code>
+
+
+package Oracle.Partner.Tracker.entities;
+
+import Oracle.Partner.Tracker.dto.WorkloadDTO;
+import Oracle.Partner.Tracker.entities.relations.WorkloadExpertise;
+import Oracle.Partner.Tracker.utils.IngestionOperation;
+import Oracle.Partner.Tracker.utils.Status;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@Table(name = "workload")
+public class Workload {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String description;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "ingestion_operation")
+    private IngestionOperation ingestionOperation;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+    @Column(name = "create_at")
+    private LocalDateTime createAt;
+    @Column(name = "update_at")
+    private LocalDateTime updateAt;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<WorkloadExpertise> workloadExpertises = new ArrayList<>();
+    
+    public Workload(WorkloadDTO workloadDTO) {
+        this.name = workloadDTO.getName();
+        this.description = workloadDTO.getDescription();
+        this.ingestionOperation = workloadDTO.getIngestionOperation();
+        this.status = workloadDTO.getStatus();
+        this.createAt = workloadDTO.getCreateAt();
+        this.updateAt = workloadDTO.getUpdateAt();
+    }
+
+    public void addWorkloadExpertise(WorkloadExpertise workloadExpertise){
+        workloadExpertise.setWorkload(this);
+        this.workloadExpertises.add(workloadExpertise);
+    }
+    
+</code></pre>
+
+<code><pre>
+
+    public Optional<WorkloadDTO> insertWorkload(WorkloadDTO workloadDTO){
+            Optional<WorkloadDTO> optionalWorkload= this.findWorkloadByName(workloadDTO.getName());
+            if (optionalWorkload.isPresent()){
+                return Optional.empty();
+            }
+            if (workloadDTO.getName() == null || workloadDTO.getName().isBlank()){
+                throw new RuntimeException("O nome da Workload é obrigatório");
+            }
+
+        Workload workload = new Workload();
+        copyDTOtoEntity(workloadDTO, workload);
+
+        workload = workloadRepository.save(workload);
+
+        return Optional.of(new WorkloadDTO(workload));
+
+    }
+</pre></code>
+
+<pre><code>
+
+package Oracle.Partner.Tracker.repositories;
+
+import Oracle.Partner.Tracker.entities.Workload;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface WorkloadRepository extends JpaRepository <Workload,Long>{
+    Workload findByName(String name);
+}
+    
+</code></pre>
 </details>
 
 
