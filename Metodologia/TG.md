@@ -939,7 +939,7 @@ formulario.addEventListener('submit', function (event) {
 </ul>
 <b>Contribuições Pessoais</b>
 </summary><br>
-<p align="justify">Desempenhei o papel de Desenvolvedora, criando endpoints REST para fornecer informações sobre expertises e tracks por empresas parceiras, além de desenvolver CRUD para o cadastro de novas Workloads, ou seja, cargas de trabalho que os parceiros podem obter. Também trabalhei na implementação de lógicas de negócios para garantir a correta manipulação das informações e na integração com o banco de dados.</p>
+<p align="justify">Desempenhei o papel de Desenvolvedora, criando endpoints REST para fornecer informações sobre workload, além de desenvolver CRUD para o cadastro de novas Workloads, ou seja, cargas de trabalho que os parceiros podem obter. Também trabalhei na implementação de lógicas de negócios para garantir a correta manipulação das informações e na integração com o banco de dados.</p>
  
 
 <details><Summary><b>Cadastro de Workload</b></Summary>
